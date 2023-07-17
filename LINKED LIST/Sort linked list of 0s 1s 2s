@@ -1,76 +1,88 @@
-Node is defined 
-  struct Node {
+
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
     int data;
-    struct Node *next;
-    Node(int x) {
-        data = x;
+    Node *next;
+    Node()
+    {
+        this->data = 0;
         next = NULL;
     }
-
-
-class Solution
-{
-    public:
-    void insertAtTail(Node* &tail, Node* curr ) {
-    tail -> next = curr;
-    tail = curr;
-}
-    
-    
-    //Function to sort a linked list of 0s, 1s and 2s.
-    Node* segregate(Node *head) {
-        
-       
-    Node* zeroHead = new Node(-1);
-    Node* zeroTail = zeroHead;
-    Node* oneHead = new Node(-1);
-    Node* oneTail = oneHead;
-    Node* twoHead = new Node(-1);
-    Node* twoTail = twoHead;
-    
-    Node* curr = head;
-    
-    // create separate list 0s, 1s and 2s
-    while(curr != NULL) {
-        
-        int value = curr -> data;
-        
-        if(value == 0) {
-            insertAtTail(zeroTail, curr);
-        }
-        else if(value == 1) {
-            insertAtTail(oneTail, curr);
-        }
-        else if(value == 2) {
-            insertAtTail(twoTail, curr);
-        }       
-        curr = curr -> next;
+    Node(int data)
+    {
+        this->data = data; 
+        this->next = NULL;
     }
-    
-    //merge 3 sublist
-    
-    // 1s list not empty
-    if(oneHead -> next != NULL) {
-        zeroTail -> next = oneHead -> next;
-    }
-    else {
-        //1s list -> empty
-        zeroTail -> next = twoHead -> next;
-    }
-    
-    oneTail -> next = twoHead -> next;
-    twoTail -> next = NULL;
-    
-	//setup head 
-    head = zeroHead -> next;
-    
-    //delete dummy nodes
-    delete zeroHead;
-    delete oneHead;
-    delete twoHead;
-    
-    return head;
-        
+    Node(int data, Node* next)
+    {
+        this->data = data;
+        this->next = next;
     }
 };
+*/
 
+//Node *tbi = new  Node();
+
+void insert(Node* &temp ,Node* &head,Node* &tail){
+    
+        if(head == NULL){
+            head = temp;
+            tail = temp;
+        }
+        else if(tail != NULL){
+                
+            //Node* toBeInserted(temp->data);
+       //     Node toBeInserted;  // Statically allocate memory
+       //     toBeInserted.data = temp->data;  // Assign data to the new node
+            tail->next = temp;
+            tail = tail->next;
+        }
+    }
+Node* sortList(Node *head){
+    // Write your code here.
+    if(head == NULL || head->next == NULL)
+            return head;
+            
+        Node* zerohead = NULL;
+        Node* zerotail = NULL;
+        Node* onehead = NULL;
+        Node* onetail = NULL;
+        Node* twohead = NULL;
+        Node* twotail = NULL;
+        Node* temp = head;
+        while(temp != NULL){
+            
+           // Node *tbi = temp;
+           // tbi->data = temp->data;
+            //temp = temp->next;
+           // tbi->next = NULL;
+            Node* tbi = new Node(temp->data);
+            if(temp->data == 0)
+                insert(tbi,zerohead,zerotail);
+                
+            else if(temp->data == 1)
+                insert(tbi,onehead,onetail);
+                
+            else{
+                insert(tbi,twohead,twotail);}
+             
+            temp = temp->next;  
+        }
+        if(zerohead!=NULL){
+            zerotail->next=onehead;
+            if(onehead!=NULL)
+                onetail->next=twohead;
+            return zerohead;
+        }
+        else if(onehead!=NULL){
+            onetail->next=twohead;
+            return onehead;}
+        else if(twohead!=NULL)
+            return twohead;
+            
+        return head;
+}
