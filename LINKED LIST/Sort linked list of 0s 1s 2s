@@ -4,90 +4,148 @@ toBeInserted NODE
 
 
 
-/*
-Following is the class structure of the Node class:
+//{ Driver Code Starts
+#include <bits/stdc++.h>
 
-class Node
-{
-public:
+using namespace std;
+/* Link list Node */
+struct Node {
     int data;
-    Node *next;
-    Node()
-    {
-        this->data = 0;
+    struct Node *next;
+    Node(int x) {
+        data = x;
         next = NULL;
     }
-    Node(int data)
-    {
-        this->data = data; 
-        this->next = NULL;
-    }
-    Node(int data, Node* next)
-    {
-        this->data = data;
-        this->next = next;
+};
+
+struct Node *start = NULL;
+
+
+// } Driver Code Ends
+/*
+ 
+  Node is defined as
+  struct Node {
+    int data;
+    struct Node *next;
+    Node(int x) {
+        data = x;
+        next = NULL;
     }
 };
+
 */
-
-//Node *tbi = new  Node();
-
-void insert(Node* &temp ,Node* &head,Node* &tail){
+class Solution
+{
+    void insert(Node* &tail, Node* temp){
+        tail->next = temp;
+        tail = tail->next;
+    }
     
-        if(head == NULL){
-            head = temp;
-            tail = temp;
-        }
-        else if(tail != NULL){
+    public:
+    //Function to sort a linked list of 0s, 1s and 2s.
+    Node* segregate(Node *head) {
+        
+        if(head == NULL || head->next == NULL)
+            return head;
+        
+        Node* curr = head;
+        Node* ZeroHead = new Node(-1);
+        Node* ZeroTail = ZeroHead;
+        Node* OneHead = new Node(-1);
+        Node* OneTail = OneHead;
+        Node* TwoHead = new Node(-1);
+        Node* TwoTail = TwoHead;
+        
+        while(curr != NULL){
+            
+            int a = curr->data;
+            
+            if(a == 0)
+                insert(ZeroTail,curr);
                 
-            //Node* toBeInserted(temp->data);
-       //     Node toBeInserted;  // Statically allocate memory
-       //     toBeInserted.data = temp->data;  // Assign data to the new node
-            tail->next = temp;
-            tail = tail->next;
+            else if(a == 1)
+                insert(OneTail,curr);
+                
+            else if(a == 2)
+                insert(TwoTail,curr);
+                
+            curr = curr->next;
+        }
+        
+        if(OneHead->next == NULL)
+        {
+            ZeroTail->next = TwoHead->next;
+        }
+        else
+        {
+            ZeroTail->next = OneHead->next;
+          //  OneTail->next = TwoHead->next;
+        }
+        
+        OneTail->next = TwoHead->next;
+        TwoTail->next = NULL;
+        
+        head = ZeroHead->next;
+        
+        return head;
+        
+        delete ZeroHead;
+        delete OneHead;
+        delete TwoHead;
+        
+    }
+};
+
+
+//{ Driver Code Starts.
+
+// Function to sort a linked list of 0s, 1s and 2s
+void printList(struct Node *Node) {
+    while (Node != NULL) {
+        printf("%d ", Node->data);
+        Node = Node->next;
+    }
+    printf("\n");
+}
+
+/* Drier program to test above function*/
+void insert(int n1) {
+    int n, value, i;
+    // scanf("%d",&n);
+    n = n1;
+    struct Node *temp;
+    for (i = 0; i < n; i++) {
+        scanf("%d", &value);
+
+        if (i == 0) {
+            start = new Node(value);
+            temp = start;
+            continue;
+        } else {
+            temp->next = new Node(value);
+            temp = temp->next;
+            temp->next = NULL;
         }
     }
-Node* sortList(Node *head){
-    // Write your code here.
-    if(head == NULL || head->next == NULL)
-            return head;
-            
-        Node* zerohead = NULL;
-        Node* zerotail = NULL;
-        Node* onehead = NULL;
-        Node* onetail = NULL;
-        Node* twohead = NULL;
-        Node* twotail = NULL;
-        Node* temp = head;
-        while(temp != NULL){
-            
-           // Node *tbi = temp;
-           // tbi->data = temp->data;
-            //temp = temp->next;
-           // tbi->next = NULL;
-            Node* tbi = new Node(temp->data);
-            if(temp->data == 0)
-                insert(tbi,zerohead,zerotail);
-                
-            else if(temp->data == 1)
-                insert(tbi,onehead,onetail);
-                
-            else{
-                insert(tbi,twohead,twotail);}
-             
-            temp = temp->next;  
-        }
-        if(zerohead!=NULL){
-            zerotail->next=onehead;
-            if(onehead!=NULL)
-                onetail->next=twohead;
-            return zerohead;
-        }
-        else if(onehead!=NULL){
-            onetail->next=twohead;
-            return onehead;}
-        else if(twohead!=NULL)
-            return twohead;
-            
-        return head;
 }
+
+int main() {
+
+    int n;
+
+    int t;
+    scanf("%d", &t);
+
+    while (t--) {
+        scanf("%d", &n);
+
+        insert(n);
+        Solution ob;
+        struct Node *newHead = ob.segregate(start);
+        printList(newHead);
+    }
+
+    return 0;
+}
+// } Driver Code Ends
