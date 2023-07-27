@@ -1,3 +1,6 @@
+TWO APPROACHES
+
+
 APPROACH 1 
 TIME COMPLEXIRTY O(N) AND SPACE COMPLEXITY O(K)
 // Function to reverse first k elements of a queue.
