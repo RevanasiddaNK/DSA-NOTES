@@ -2,6 +2,7 @@
 using namespace std;
 
 class Node {
+    
     public :
    // private :
         int data;
@@ -22,9 +23,9 @@ Node* BuildBinaryTree(Node* root) {
     cout<<"Enter the data \n";
     cin>>data;
 
-     root = new Node(data);
+ //   root = new Node(data);
 
-    if(data == -1){
+    if(data == -1) {
         return NULL;
     }
 
