@@ -1,3 +1,7 @@
+APPROACH 1
+/* 
+ time complexity: O(N)
+ auxiliary space: O(h) , where h = height of tree
 /* A binary tree node structure
 
 struct Node
@@ -12,13 +16,54 @@ struct Node
     }
 };
  */
-
 class Solution{
     
     private:
-    
-    int height(Node *root){
+    pair<bool, int> isBalancedFast(Node *root)
+    {
+        if(root == NULL){
+            
+            pair<bool, int>ans = make_pair(true,0);
+            return ans;
+            
+        }
+                
+        pair<bool, int> left =  isBalancedFast(root->left);
+        pair<bool, int> right =  isBalancedFast(root->right);
         
+        bool s = abs(left.second - right.second) <= 1 ? 1:0;
+        
+        pair<bool, int>ans;
+        if(left.first && right.first && s){
+                ans.first = true;
+                ans.second = (max(left.second , right.second)+1);
+        }
+        else
+        {
+            ans.first = false;
+        }
+        
+        return ans;
+    }
+    
+    public:
+    //Function to check whether a binary tree is balanced or not.
+    bool isBalanced(Node *root)
+    {
+        pair<bool, int>ans = isBalancedFast(root);
+        return ans.first;
+    }
+};
+
+
+
+
+
+APPROACH 2
+//    TIME COMPLEXITY = O(N^2)
+class Solution{
+     private:
+     int height(Node *root){
         if(root == NULL)
             return 0;
             
