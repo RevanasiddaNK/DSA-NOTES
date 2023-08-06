@@ -1,69 +1,53 @@
-#include <bits/stdc++.h> 
-/*************************************************************
 
-    Following is the Binary Tree node structure
-
-    template <typename T>
-
-    class BinaryTreeNode
-    {
-    public :
-        T data;
-        BinaryTreeNode<T> *left;
-        BinaryTreeNode<T> *right;
-
-        BinaryTreeNode(T data) {
-            this -> data = data;
-            left = NULL;
-            right = NULL;
-        }
-
-        ~BinaryTreeNode() {
-            if (left)
-            {
-                delete left;
-            }
-            if (right)
-            {
-                delete right;
-            }
-        }
-    };
-
-*************************************************************/
-
-pair<int,int> predecessorSuccessor(BinaryTreeNode<int>* root, int key)
+/* BST Node
+struct Node
 {
-    int pre = -1;
-    int succ = -1;
-    BinaryTreeNode<int>* temp = root;
-    while(temp != NULL && temp->data != key) {
+	int key;
+	struct Node *left;
+	struct Node *right;
+	
+	Node(int x){
+	    key = x;
+	    left = NULL;
+	    right = NULL;
+	}
+};
+*/
+class Solution
+{
+    public:
+    void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+    {
+        pre = NULL;
+        suc = NULL;
+        Node* temp = root;
+         
+        while(temp != NULL && temp->key!= key) {
 
-        if(temp->data > key) {
-            succ = temp->data;
-            temp = temp->left;
+            if(temp->key > key) {
+                suc = temp;
+                temp = temp->left;
+            }
+            else {
+                pre = temp;
+                temp = temp->right;
+            }
         }
-        else {
-            pre = temp->data;
-            temp = temp->right;
+        
+        if(temp != NULL) {
+            Node* keyNode = temp;
+            Node* leftNode = keyNode->left;
+            Node* rightNode = keyNode->right;
+
+            while(rightNode != NULL) {
+                suc = rightNode;
+                rightNode = rightNode->left;
+            }
+
+            while (leftNode != NULL) {
+                pre = leftNode;
+                leftNode = leftNode->right;
+            }
         }
     }
-    if(temp != NULL) {
-        BinaryTreeNode<int>* keyNode = temp;
-        BinaryTreeNode<int>* leftNode = keyNode->left;
-        BinaryTreeNode<int>* rightNode = keyNode->right;
-
-        while(rightNode != NULL) {
-            succ = rightNode->data;
-            rightNode = rightNode->left;
-        }
-
-        while (leftNode != NULL) {
-            pre = leftNode->data;
-            leftNode = leftNode->right;
-        }
-    }
-    
-    pair<int,int> ans = make_pair(pre, succ);
-    return ans;
-}
+};
