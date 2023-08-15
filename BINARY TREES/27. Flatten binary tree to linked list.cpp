@@ -61,7 +61,7 @@ class Solution
 
 
 
-// Method 2 trying not yet completed
+// APPROACH 2 trying not yet completed
 class Solution
 {
     public:
