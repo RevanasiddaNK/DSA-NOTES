@@ -1,3 +1,44 @@
+
+
+// method 1 
+class Solution
+{
+    public:
+    void flatten(Node *root)
+    {
+        Node *curr = root, *prev;
+        while(curr) {
+            
+           if(curr->left) {
+               
+               prev = curr->left;
+               
+                while(prev->right)
+                    prev = prev->right;
+                    
+                prev->right = curr->right;
+                curr->right = curr->left;
+                curr = curr->left;
+           }
+           else {
+               curr = curr->right;
+           }
+        }
+        
+        curr = root;
+        while(curr != NULL) {
+            curr->left = NULL;
+            curr = curr->right;
+        }
+    }
+};
+
+
+
+
+
+
+// Method 2 trying not yet completed
 class Solution
 {
     public:
