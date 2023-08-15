@@ -1,22 +1,21 @@
 
 
-// method 1 
+// APPROACH 1 
 class Solution
 {
     public:
     void flatten(Node *root)
     {
-        Node *curr = root, *prev;
+        Node *curr = root, *pred;
         while(curr) {
-            
+            // pred means preDecessor
            if(curr->left) {
+              pred = curr->left;
                
-               prev = curr->left;
-               
-                while(prev->right)
-                    prev = prev->right;
+                while(pred->right)
+                    pred = pred->right;
                     
-                prev->right = curr->right;
+                pred->right = curr->right;
                 curr->right = curr->left;
                 curr = curr->left;
            }
@@ -34,7 +33,31 @@ class Solution
 };
 
 
-
+// APPROACH 1 OPTIMIZED
+class Solution
+{
+    public:
+    void flatten(Node *root)
+    {
+        Node *curr = root, *pred;
+        while(curr) {
+            
+           if(curr->left) {
+               
+               pred = curr->left;
+               
+                while(pred->right)
+                    pred = pred->right;
+                    
+                pred->right = curr->right;
+                curr->right = curr->left;
+                curr->left = NULL;
+           }
+           
+           curr = curr->right;
+        }
+    }
+};
 
 
 
