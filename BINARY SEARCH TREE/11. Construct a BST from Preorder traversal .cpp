@@ -26,10 +26,33 @@
 */
 
 /*
-Approach 1 
- Time Complexity O(N) 
- SpaceComplexity O(Height of the Tree)
+    Approach 1 
+                 Time Complexity O(N) 
+                 SpaceComplexity O(Height of the Tree)
 */
+BinaryTreeNode<int>* ConstructBST(vector<int> &arr, int &i, int min, int max) {
+        
+        if(i >= arr.size())
+            return NULL;
+            
+        if( arr[i] < min || arr[i] > max)
+            return NULL;
+        
+        BinaryTreeNode<int>* root = new BinaryTreeNode<int>(arr[i++]);
+    
+        // if(min <= arr[i] && arr[i]  <= currData ){
+            root->left = ConstructBST(arr,i,min,root->data);
+        
+       // else if(currData < arr[i] && arr[i] < max )
+            root->right = ConstructBST(arr,i,root->data,max);
+    
+        return root;
+}
+
+BinaryTreeNode<int>* preorderToBST(vector<int> &preorder) {
+   int i=0;
+   return ConstructBST(preorder,i,INT_MIN,INT_MAX);
+}
 
 
 
@@ -37,10 +60,11 @@ Approach 1
 
 
 
-
-// Brute Force
-// Time Complexity O(N*log(N)) 
-// SpaceComplexity O(Height of the Tree)
+/*     
+    Brute Force
+                Time Complexity O(N*log(N)) 
+                SpaceComplexity O(Height of the Tree)
+*/
 
 BinaryTreeNode<int>* BalancedTree(vector<int>&arr, int s, int e) {
     
