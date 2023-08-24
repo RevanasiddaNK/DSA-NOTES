@@ -33,7 +33,7 @@ public:
         }
         return root->val;
     }
-  
+  // Tail Recursion
     TreeNode* ConstructBST(ListNode* LLroot, int s, int e) {
         
         if(s > e)
@@ -111,7 +111,8 @@ class Solution{
         }
         return count;
     }
-    
+
+// Head Recursion
     TNode* ConstructBST(LNode* &head, int n) {
         
         if(n <= 0)
@@ -140,6 +141,7 @@ class Solution{
 };
 
 /*
+
 Time complexity: O(nLogn) where n is the number of nodes in Linked List.
 Method 2 (Tricky) 
 Method 1 constructs the tree from root to leaves. 
@@ -151,6 +153,7 @@ After counting nodes, we take left n/2 nodes and recursively construct the left 
 After left subtree is constructed, we allocate memory for root and link the left subtree with root. 
 Finally, we recursively construct the right subtree and link it with root. 
 While constructing the BST, we also keep moving the list head pointer to next so that we have the appropriate pointer in each recursive call.
+
 */
 
 
