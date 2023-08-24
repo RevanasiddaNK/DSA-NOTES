@@ -1,5 +1,7 @@
+Method 1 Optimized
+Time Complexity O(N)
+Space Complexity O(Height of the Tree) 
 /* 
-GFG 
 //Linked List 
 struct LNode
 {
@@ -32,8 +34,8 @@ struct TNode
 
 
 
-
-// LeetCode Solution accepted
+Time Complexity O(N*2)
+Space Complexity O(Height of the Tree) 
 /**
  * Definition for singly-linked list.
  * struct ListNode {
