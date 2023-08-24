@@ -1,41 +1,6 @@
-Method 1 Optimized
-Time Complexity O(N)
-Space Complexity O(Height of the Tree) 
-/* 
-//Linked List 
-struct LNode
-{
-    int data;
-    struct LNode* next;
-    
-    LNode(int x){
-        data = x;
-        next = NULL;
-    }
-};
-
-//Tree
-struct TNode  
-{  
-    
-    int data;  
-    struct TNode* left;  
-    struct TNode* right; 
-    TNode(int x)
-    {
-        data=x;
-        left=right=NULL;
-    }
-}; */
-
-
-
-
-
-
-
+Method 1 
 Time Complexity O(N*2)
-Space Complexity O(Height of the Tree) 
+Space Complexity O(N) 
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -98,3 +63,94 @@ public:
         return ConstructBST(head,0,len-1);
     }
 };
+
+
+
+
+
+
+
+Method 2 Optimized
+Time Complexity O( N*log(N) )
+Space Complexity O(N) 
+/* 
+//Linked List 
+struct LNode
+{
+    int data;
+    struct LNode* next;
+    
+    LNode(int x){
+        data = x;
+        next = NULL;
+    }
+};
+
+//Tree
+struct TNode  
+{  
+    
+    int data;  
+    struct TNode* left;  
+    struct TNode* right; 
+    TNode(int x)
+    {
+        data=x;
+        left=right=NULL;
+    }
+}; */
+class Solution{
+  public:
+  
+    int countNodes(LNode* head) {
+     //   LNode* head = head1;
+        int count = 0;
+        while(head != NULL) {
+            count++;
+            head = head->next;
+        }
+        return count;
+    }
+    
+    TNode* ConstructBST(LNode* &head, int n) {
+        
+        if(n <= 0)
+            return NULL;
+            
+        TNode* left =  ConstructBST(head,n/2);
+        
+        TNode* root = new TNode(head->data);
+        
+        root->left = left;
+        head = head->next;
+        
+        TNode* right =  ConstructBST(head,n-1-n/2);
+        
+        root->right = right;
+        
+        return root;
+    }
+  
+    TNode* sortedListToBST(LNode *head) {
+        
+        int n = countNodes(head);
+        
+        return ConstructBST(head, n);
+    }
+};
+
+/*
+Time complexity: O(nLogn) where n is the number of nodes in Linked List.
+Method 2 (Tricky) 
+Method 1 constructs the tree from root to leaves. 
+In this method, we construct from leaves to root. 
+The idea is to insert nodes in BST in the same order as they appear in Linked List so that the tree can be constructed in O(n) time complexity.
+We first count the number of nodes in the given Linked List. 
+Let the count be n. 
+After counting nodes, we take left n/2 nodes and recursively construct the left subtree. 
+After left subtree is constructed, we allocate memory for root and link the left subtree with root. 
+Finally, we recursively construct the right subtree and link it with root. 
+While constructing the BST, we also keep moving the list head pointer to next so that we have the appropriate pointer in each recursive call.
+*/
+
+
