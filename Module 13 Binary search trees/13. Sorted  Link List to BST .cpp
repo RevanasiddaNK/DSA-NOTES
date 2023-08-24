@@ -139,5 +139,9 @@ class Solution{
         return ConstructBST(head, n);
     }
 };
-
+/*
+     Pattern of  " Sorted  Link List to BST " Question , Reverse Pre Order Traversal to create a BST.
+     sorted Linked List -> pre Order Traversal -> L N R -> N for process for creating a nodes  in a BST.
+     
+*/
 
