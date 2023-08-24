@@ -1,5 +1,6 @@
 /* 
-//Linked List
+GFG 
+//Linked List 
 struct LNode
 {
     int data;
@@ -28,20 +29,45 @@ struct TNode
 
 
 
-// 2 / 175 test cases passed
-class Solution{
-  public:
-  
-    int valueAtPosition(LNode* root, int p) {
+
+
+
+
+// LeetCode Solution accepted
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+     int valueAtPosition(ListNode* root1, int p) {
         int count = 0;
+        ListNode* root = root1;
         while(root != NULL && count < p) {
             count++;
             root = root->next;
         }
-        return root->data;
+        return root->val;
     }
   
-    TNode* ConstructBST(LNode* LLroot, int s, int e) {
+    TreeNode* ConstructBST(ListNode* LLroot, int s, int e) {
         
         if(s > e)
             return NULL;
@@ -49,7 +75,7 @@ class Solution{
         int m = s+(e-s)/2;   
         int data = valueAtPosition(LLroot,m);
         
-         TNode* root = new  TNode(data);
+         TreeNode* root = new  TreeNode(data);
          
          root->left = ConstructBST(LLroot,s,m-1);
          root->right = ConstructBST(LLroot,m+1,e);
@@ -57,10 +83,11 @@ class Solution{
          return root;
     }
   
-    TNode* sortedListToBST(LNode *head) {
-        
+
+    TreeNode* sortedListToBST(ListNode* head) {
+         
         int len = 0;
-        LNode* temp = head;
+        ListNode* temp = head;
         while(temp != NULL){
             len++;
             temp = temp->next;
