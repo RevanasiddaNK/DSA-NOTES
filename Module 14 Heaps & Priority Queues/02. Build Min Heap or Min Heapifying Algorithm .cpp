@@ -12,10 +12,26 @@ void Heapify(vector<int> &arr, int n, int i) {
         swap(arr[i], arr[left]);
         Heapify(arr,n,left);
     }
+    
     if(right < n && arr[right] < arr[i]) {
         swap(arr[i], arr[right]);
         Heapify(arr,n,right);
     }
+
+/*
+        
+    if(right < n && arr[right] < arr[i]) {
+        swap(arr[i], arr[right]);
+        Heapify(arr,n,right);
+    }
+
+    if(left < n && arr[left] < arr[i]) {
+        swap(arr[i], arr[left]);
+        Heapify(arr,n,left);
+    }
+    
+*/
+    
 
 /*
     if(left < n && arr[left] < arr[small]) {
