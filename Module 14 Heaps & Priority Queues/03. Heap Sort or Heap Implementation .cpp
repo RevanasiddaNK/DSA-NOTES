@@ -8,17 +8,16 @@ class Solution
         int left = (2*i)+1;
         int right = (2*i)+2;
         
-        if(left < n && arr[left] > arr[largest]) 
-            largest = left;
-            
-        if(right < n && arr[right] > arr[largest]) 
-            largest = right;
-            
-        if(i != largest){
+        if(left < n && arr[left] > arr[largest]) {
             swap(arr[i], arr[largest]);
             heapify(arr,n,largest);
         }
-        
+    
+            
+        if(right < n && arr[right] > arr[largest]) {
+            swap(arr[i], arr[largest]);
+            heapify(arr,n,largest);
+        } 
     }
 
     public:
