@@ -39,6 +39,8 @@ class Solution
         
         while(size > 0) {
             swap(arr[0],arr[size]);
+            // now we r sending the pseudo size which is not a actual size it is already size-1;
+            // if we do size-- befor the heapify() size becomes size-2; hence it shows error!
             heapify(arr, size, 0);
             size--;
         }
