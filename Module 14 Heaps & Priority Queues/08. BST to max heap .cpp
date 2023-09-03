@@ -1,8 +1,16 @@
+//Approach 1
+/*
+Special Max Heap = 
+ Convert a given BST into a Special Max Heap with the condition that all the values 
+ in the left subtree of a node should be less than all the values in the right subtree of the node.
+ This condition is applied on all the nodes in the so converted Max Heap.
+*/
+// to do meet the conditon of SPECIAL MAX HEAP PROPERTIES we have to go for POST Order Traversal and IN  Order Traversal
 
 
 
 
-// APPROACH 2 General Max Heap Not Special 
+// APPROACH 2 General Max Heap Not Special Max Heap
 class Solution{
   public:
     
