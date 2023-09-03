@@ -2,7 +2,7 @@
 
 
 
-// APPROACH 2
+// APPROACH 2 General Max Heap Not Special 
 class Solution{
   public:
     
