@@ -1,3 +1,10 @@
+/* 
+Note : Special Heap Property Left < Right
+1. Special Max Heap Post Order Traversal is Sorted in a increasing Order
+2. Special Min Heap Pre Order Traversal is Sorted in a increasing Order
+*/
+
+
 //Approach 1
 /*
 Special Max Heap = 
