@@ -6,7 +6,40 @@ Special Max Heap =
  This condition is applied on all the nodes in the so converted Max Heap.
 */
 // to do meet SPECIAL MAX HEAP PROPERTIES we have to go for POST Order and IN Order TraversalS
-
+class Solution{
+  public:
+    
+    void PostOrderTraversal(Node* root, vector<int>&vect, int &i) {
+        
+        if(i >= vect.size() || root == NULL)
+            return;
+        
+        PostOrderTraversal(root->left,vect,i);
+        PostOrderTraversal(root->right,vect,i);
+        root->data = vect[i++];
+        
+    }
+    
+    void InOrderTraversal(Node* root, vector<int>&vect) {
+        
+        if(root == NULL)
+            return;
+        
+        InOrderTraversal(root->left, vect);
+        vect.push_back(root->data);
+        InOrderTraversal(root->right, vect);
+            
+    }
+    
+    void convertToMaxHeapUtil(Node* root)
+    {
+        vector<int>vect;
+        InOrderTraversal(root,vect);
+        
+        int i=0;
+        PostOrderTraversal(root,vect,i);
+    }    
+};
 
 
 
