@@ -1,3 +1,10 @@
+Note : Special Heap Property Left < Right
+1. Special Max Heap Post Order Traversal is Sorted in a increasing Order
+2. Special Min Heap Pre Order Traversal is Sorted in a increasing Order
+
+
+
+
 // APPROACH 1 , find out why this approach is wrong ? this is even wrong for general Min Heap
 // input 8 4 12 2 6 10 14 1 3 5 7 9 11 13 15 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
 // my  output 1 2 4 8 9 5 10 11 3 6 12 13 7 14 15 
