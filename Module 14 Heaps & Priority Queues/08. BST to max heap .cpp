@@ -5,7 +5,7 @@ Special Max Heap =
  in the left subtree of a node should be less than all the values in the right subtree of the node.
  This condition is applied on all the nodes in the so converted Max Heap.
 */
-// to do meet the conditon of SPECIAL MAX HEAP PROPERTIES we have to go for POST Order Traversal and IN  Order Traversal
+// to do meet SPECIAL MAX HEAP PROPERTIES we have to go for POST Order and IN Order TraversalS
 
 
 
