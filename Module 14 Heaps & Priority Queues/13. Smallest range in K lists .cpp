@@ -53,8 +53,9 @@ class Solution{
             
             Node* front = minHeap.top();
             minHeap.pop();
-// in each step maxi and mini covering allthe lists are updated
-
+            
+// in each step maxi , mini, range  covering allthe lists are updated
+            
             //mini updating
             mini = front->data;
             
