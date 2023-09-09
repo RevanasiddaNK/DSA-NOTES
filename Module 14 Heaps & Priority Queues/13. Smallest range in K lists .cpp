@@ -77,7 +77,7 @@ class Solution{
              
         } 
         
-        ans = make_pair(min(start,end), max(start,end));
+        ans = make_pair(start,end);
         return ans;
         
     }
