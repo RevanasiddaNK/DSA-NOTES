@@ -53,17 +53,19 @@ class Solution{
             
             Node* front = minHeap.top();
             minHeap.pop();
-            
+// in each step maxi and mini covering allthe lists are updated
+
+            //mini updating
             mini = front->data;
             
-            // Range Updation
+            // Range Updating
             if(end - start > maxi - mini) {
                 start = mini;
                 end = maxi;
             }
             
             if(front->col+1 < n){
-                
+                // Maxi updating
                 maxi = max(maxi, KSortedArray[front->row][front->col+1]);
                 
                 Node* temp = new Node(KSortedArray[front->row][front->col+1], front->row, front->col+1 );
