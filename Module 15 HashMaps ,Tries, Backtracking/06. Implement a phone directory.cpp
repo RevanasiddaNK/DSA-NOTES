@@ -1,4 +1,3 @@
-// Not solved
 class TrieNode{
     public:
         char data;
@@ -33,7 +32,7 @@ class Trie {
             return;
         }
 
-        int index = word[0]-'A';
+        int index = word[0]-'a';
 
         TrieNode* child;
         if(root->children[index] != NULL)
@@ -76,7 +75,7 @@ class Trie {
         return output;
     }
         
-    void PRINTSuggestions(TrieNode * curr,vector<string>&temp, string prefix){
+    void PRINTSuggestions(TrieNode *curr,vector<string>&temp, string prefix){
             
         if(curr->isTerminal)
             temp.push_back(prefix);
