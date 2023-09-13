@@ -1,3 +1,4 @@
+// APPROACH 1
 class Solution{
 public:
 
@@ -84,3 +85,49 @@ public:
         
     }
 };
+
+
+// APPROACH 2 USING HASHMAPS FOR isSAFE() FUNCTION NOT SOLVED 
+bool isSAFE(int row, int col, int n, unordered_map<int, bool>&mapping){
+        
+        if(mapping[row] == true)
+            return false;
+            
+        else if(mapping[(n-1)+(col-row)] == true)
+            return false;
+            
+        else if(mapping[col+row] == true)
+            return false;
+            
+        return true;
+        
+    }
+
+    void solve(vector<vector<int>>&matrix, int col, int n, vector<vector<int>>&ans, unordered_map<int, bool>&mapping){
+        
+        if(col == n){
+            addMatrixtoAns(matrix,n,ans);
+            return;
+        }
+        
+        for(int i=0; i<n; i++){
+            
+            if(isSAFE(i,col,n,mapping)){
+                
+                mapping[i] = true;
+                mapping[(n-1)+(col-i)] = true;
+                mapping[col+i] = true;
+                
+                matrix[i][col] = 1;
+                solve(matrix, col+1, n, ans, mapping);
+                matrix[i][col] = 0;
+                
+                mapping[i] = false;
+                mapping[(n-1)+(col-i)] = false;
+                mapping[col+i] = false;
+            }
+           
+        }
+        
+    }
+    
