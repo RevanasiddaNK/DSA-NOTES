@@ -44,7 +44,34 @@ vector<vector<int>> depthFirstSearch(int V, int E, vector<vector<int>> &edges)
             ans.push_back(temp);
         }
     }
-
     return ans;
-
 }
+
+// DFS Traversal in connected undirected graph
+class Solution {
+  public:
+  
+    void DFSTraversal(vector<int> adj[], unordered_map<int, bool>&visited, vector<int>&ans, int node ){
+        
+        ans.push_back(node);
+        visited[node] = true;
+
+        // Recursive call for connected nodes
+        for(auto i : adj[node]){
+            if(!visited[i]){
+                DFSTraversal(adj,visited, ans, i);
+            }
+        }
+    }
+    
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        
+        vector<int>ans;
+        unordered_map<int, bool>visited;
+        
+        DFSTraversal(adj, visited, ans, 0);
+        
+        return ans;
+        
+    }
+};
