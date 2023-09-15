@@ -1,4 +1,4 @@
-
+// Love Babbar Video Code
 #include<unordered_map>
 #include<queue>
 #include<list>
@@ -49,3 +49,52 @@ vector<int> BFS(int vertex, vector<pair<int, int>> edges)
     }
    return ans; 
 }
+
+// BFS of graph GFG Accepted Code
+class Solution {
+  public:
+    // Function to return Breadth First Traversal of given graph.
+    
+#include<unordered_map>
+#include<queue>
+#include<list>
+#include<set>
+    
+    void bfs(unordered_map<int,bool> &visited,vector<int>&ans, vector<int> adj[], int node){
+    
+    queue<int>q;
+    q.push(node);
+    visited[node]=1;
+    
+    while(!q.empty()){
+        int frontnode=q.front();
+        q.pop();
+         visited[frontnode]=1;
+         
+        //storefrontnode to ans
+        ans.push_back(frontnode);
+        
+        //traverse all neighbours of frontnode
+        for(auto i:adj[frontnode]){
+            if(!visited[i]){
+                q.push(i);
+                visited[i]=1;
+            }
+        }
+    }
+}
+    
+    
+    vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+        
+        vector<int>ans;
+        unordered_map<int,bool>visited;
+  
+        bfs(visited, ans, adj, 0);
+        
+        return ans;
+    }
+};
+
+// BFS of graph Code Studio Accepted Code
+
