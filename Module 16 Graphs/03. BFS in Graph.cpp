@@ -97,4 +97,41 @@ class Solution {
 };
 
 // BFS of graph Code Studio Accepted Code
+#include<unordered_map>
+#include<queue>
+#include<list>
+#include<set>
+
+void bfs(unordered_map<int,bool> &visited,vector<int>&ans, vector<vector<int>> &adjList, int node){
+    
+    queue<int>q;
+    q.push(node);
+    visited[node]=1;
+    
+    while(!q.empty()){
+        int frontnode=q.front();
+        q.pop();
+        //storefrontnode to ans
+        ans.push_back(frontnode);
+        //traverse all neighbours of frontnode
+        for(auto i:adjList[frontnode]){
+            if(!visited[i]){
+                q.push(i);
+                visited[i]=1;
+            }
+        }
+    }
+}
+
+
+
+vector<int> bfsTraversal(int n, vector<vector<int>> &adj){
+    
+    vector<int>ans;
+    unordered_map<int,bool>visited;
+
+    bfs(visited, ans, adj, 0);
+    
+    return ans;
+}
 
