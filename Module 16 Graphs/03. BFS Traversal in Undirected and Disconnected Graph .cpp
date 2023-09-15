@@ -52,7 +52,7 @@ vector<int> BFS(int vertex, vector<pair<int, int>> edges)
 }
 
 
-
+//  BFS Traversal in directed and connected Graph
 // BFS of graph GFG Accepted Code
 class Solution {
   public:
@@ -99,6 +99,7 @@ class Solution {
     }
 };
 
+// BFS Traversal in directed and connected Graph
 // BFS of graph Code Studio Accepted Code
 #include<unordered_map>
 #include<queue>
