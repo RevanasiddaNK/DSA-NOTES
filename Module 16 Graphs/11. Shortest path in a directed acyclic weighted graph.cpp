@@ -91,3 +91,20 @@ int main(){
 /*
 2147483647 0 2 6 5 3 
 */
+
+
+// getShortPath can be written like this
+void GetShortestPath(stack<int>topo, vector<int>&distance){
+            distance[1] = 0;
+            while(!topo.empty()){
+                int top = topo.top();
+                topo.pop();
+                if(distance[top] != INT_MAX){
+                    for(auto i : adjList[top]){
+                        if((distance[top]+i.second) < distance[i.first]){
+                            distance[i.first] = distance[top]+i.second;
+                        }
+                    }
+                }
+            }
+ }
