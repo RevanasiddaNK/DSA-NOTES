@@ -64,21 +64,8 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
 
 
 
+// Prim’s algorithm using priority_queue in STL AND SETS in STL
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// using sets/priority queues instead of using time complexity of O(N) for finding min elements
 #include <bits/stdc++.h> 
 #include<unordered_map>
 #include<list>
@@ -86,13 +73,9 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
 #include<vector>
 #include<queue>
 #include<set>
-/*
-class cmp {
-    bool operator() (pair<int, int> a, pair<int, int> b) {
-         return a.first > b.first;
-    }
-};
-*/
+
+typedef pair<int, int> iPair;
+
 vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pair<int, int>, int>> &g)
 {
     unordered_map<int, list<pair<int,int>>>adjList;
@@ -109,32 +92,27 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
     vector<int>Key(n+1,INT_MAX);
     vector<int>parent(n+1,-1);
 
-    //  priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
-    //  min_heap<pair<int, int>> q;
-
-    //  priority_queue<pair<int, int> , vector<pair<int, int>>, cmp> pq;
-
-    set<pair<int,int>>st;
+    priority_queue< iPair, vector <iPair> , greater<iPair> > pq;
+    // set<pair<int,int>>st;
 
     Key[1] = 0;
     parent[1] = -1;
 
-    st.insert(make_pair(0,1));
+    //st.insert(make_pair(0,1));
+    pq.push(make_pair(0,1));
 
     for(int i=0; i<n; i++){
 
-// find out Min Node U from the key array
         /*
-        int min = INT_MAX,U;
-        for(int i=1;i<=n; i++){
-            if(MST[i] == false && Key[i]<min){
-                min = Key[i];
-                U = i;
-            }
-        }
-        */
+    // SETS
         auto top = *(st.begin());
-        st.erase(st.begin());
+        st.erase(top);
+        */
+
+    //Min Heap Priority Queues
+        auto top = pq.top();
+        pq.pop();
+
         int U = top.second;
         MST[U] = true;
 
@@ -145,11 +123,11 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
                Key[V] = W;
                parent[V] = U;
 
-                auto record = st.find(make_pair(Key[V],V));
-                if(record != st.end()){
-                    st.erase(record);
-                }
-               st.insert(make_pair(W,V));
+
+            // SETS
+                //st.insert(make_pair(W,V));
+            //Min Heap Priority Queues
+                pq.push(make_pair(W,V));
             }
         }
     }
@@ -160,4 +138,17 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
     }
     return ans;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
