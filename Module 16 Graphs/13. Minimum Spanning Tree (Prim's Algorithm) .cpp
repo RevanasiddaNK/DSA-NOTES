@@ -1,3 +1,9 @@
+/*
+N = Number of Nodes
+Time complexity : O(N*N)
+Auxiliary Space : O(N)
+*/
+
 #include <bits/stdc++.h> 
 #include<unordered_map>
 #include<list>
@@ -65,6 +71,10 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
 
 
 // Prim’s algorithm using priority_queue in STL AND SETS in STL
+/*
+Time complexity : O(E Log N))
+Auxiliary Space :O(N)
+*/
 
 #include <bits/stdc++.h> 
 #include<unordered_map>
