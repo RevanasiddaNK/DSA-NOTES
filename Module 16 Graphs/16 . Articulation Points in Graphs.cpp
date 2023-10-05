@@ -97,3 +97,9 @@ int main(){
     }
     return 0;
 }
+
+/*
+output is
+    Articulation Points are : 
+    0 1 
+*/
