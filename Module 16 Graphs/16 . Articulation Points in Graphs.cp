@@ -5,7 +5,7 @@ Space Complexity = O(4*E) = O(E)
 Approach :
 it is similar to bridges problem 
 number of articulation points in the closed loop is Zero
-number of articulation points in the straight chain is equal to the number of Nodes in the straight chain
+number of articulation points in the straight chain is equal to the  ( number of Nodes in the straight chain -2 )
 
 starting element is handled seperately
 */
