@@ -1,3 +1,4 @@
+// KOSARAJU'S ALGORITHM
 /*
 Auxillary
 time complexity = O(E+N)
