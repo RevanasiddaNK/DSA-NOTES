@@ -110,6 +110,14 @@ int countPartitions(int n, int d, vector<int>&arr) {
         return 0;
 
     int target = (sum-d)/2;
+
+/*
+this is also correct
+    if(sum+d < 0 || (sum+d)&1)
+        return 0;
+
+    int target = (sum+d)/2;
+*/
     return solveRecursion(n-1,target,arr);
 
     vector<vector<int>>dp(n,vector<int>(target+1,-1));
