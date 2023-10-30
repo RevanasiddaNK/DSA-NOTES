@@ -1,6 +1,7 @@
 // Problem : Coin Change 2 | Infinite Supply Problems | DP on Subsequences
 
 #include<vector>
+#include<limits.h>
 /*
  // why this is wrong ?
 
@@ -39,6 +40,11 @@ long solveRecursioin(int *arr, int index, int target){
   return nottake + take;
 }
 
+
+
+
+
+
 // memoization
 long solveMem(int *arr, int index, int target,vector<vector<long>>&dp){
   // base case
@@ -59,6 +65,10 @@ long solveMem(int *arr, int index, int target,vector<vector<long>>&dp){
   }
   return dp[index][target] = nottake + take;
 }
+
+
+
+
 
 long solveTab (int *arr, int n, int T){
   // step 1
@@ -89,13 +99,48 @@ long solveTab (int *arr, int n, int T){
 
 
 
+
+
+long solveSpaceOpt(int *arr, int n, int T){
+  // step 1
+  vector<long>prev(T+1,INT_MIN);
+  // Base Case 
+  for(int target=0; target<=T;target++){
+    prev[target] = (target%arr[0] == 0);
+  }
+
+  // step 2 nested for loops from changing parameters
+  // bottom up approach
+  for(int index = 1; index <n; index++){
+    vector<long>curr(T+1,INT_MIN);
+    for(int target=0; target <= T; target++){
+      // step 3 copy recurence processing
+      long nottake =prev[target];
+      long take = 0;
+      if(arr[index] <= target){
+    // dont decrement index bcz. we can use same index as many as times
+    // infinite supply of coins
+        take = curr[target-arr[index]];
+      }
+      curr[target] = nottake + take;
+    }
+    prev = curr;
+  }
+  return prev[T];
+}
+
+
+
 long countWaysToMakeChange(int *denominations, int n, int target)
 {
   //return solverec(denominations,n, value); //wrong
+  
   return solveRecursioin(denominations,n-1,target);
 
   vector<vector<long>>dp(n, vector<long>(target+1,-1));
   return solveMem(denominations,n-1,target,dp);
 
   return solveTab(denominations,n,target);
+
+  return solveSpaceOpt(denominations,n,target);
 }
