@@ -1,4 +1,6 @@
 #include <bits/stdc++.h> 
+int LongestCommonSubsequence(string s1, string s2;
+int longestPalindromeSubsequence(string s);
 
 int solveRec(int i1, int i2,string &s1, string &s2){
     if(i1 < 0 || i2 < 0)
