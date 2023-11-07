@@ -1,0 +1,117 @@
+int solveRec(int i, int j,string &str, string &sub){
+
+	if(j < 0)
+		return 1;
+	if(i < 0)
+		return 0;
+	
+	if(str[i] == sub[j])
+		return solveRec(i-1,j-1,str,sub) + solveRec(i-1,j,str,sub);
+
+	return solveRec(i-1,j,str,sub);
+}
+
+// 1 based indexing to handle negative indexes
+int solveMem(int i, int j,string &str, string &sub, vector<vector<int>>&dp){
+
+	if(j == 0)
+		return 1;
+	if(i == 0)
+		return 0;
+
+	if(dp[i][j] != -1)
+		return dp[i][j];
+
+	if(str[i-1] == sub[j-1])
+		return solveMem(i-1,j-1,str,sub,dp) + solveMem(i-1,j,str,sub,dp);
+
+	return dp[i][j] = solveMem(i-1,j,str,sub,dp);
+}
+
+int solveTab(int m, int n,string &str, string &sub){
+	
+	vector<vector<double>>dp(m+1,vector<double>(n+1,-1));
+
+	// base cases
+	for(int i=0; i<=m; i++)
+		dp[i][0] = 1;
+	
+	for(int j=1; j<=n; j++)
+		dp[0][j] = 0;
+	
+	for(int i=1; i<=m; i++){
+		for(int j=1; j<=n; j++){
+		
+			if(str[i-1] == sub[j-1])
+				dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+			else
+				dp[i][j] = dp[i-1][j];
+
+		}
+	}
+	return (int)dp[m][n];
+}
+
+int solveSpaceOpt(int m, int n,string &str, string &sub){
+
+	vector<double>prev(n+1,-1),curr(n+1,-1);
+
+	for(int j=1; j<=n; j++)
+	 	prev[j] = curr[j] = 0;
+
+	curr[0] = prev[0] = 1;
+	
+	for(int i=1; i<=m; i++){
+		for(int j=1; j<=n; j++){
+		
+			if(str[i-1] == sub[j-1])
+				curr[j] = prev[j-1] + prev[j];
+			else
+				curr[j] = prev[j];
+
+		}
+		prev = curr;
+	}
+	return (int)prev[n];
+}
+
+int solveKnapSackAlgo(int m, int n,string &str, string &sub){
+
+	vector<double>curr(n+1,-1);
+
+	for(int j=1; j<=n; j++)
+	 	curr[j] = 0;
+
+	curr[0] = 1;
+	
+	for(int i=1; i<=m; i++){
+		for(int j=n; j>=1; j--){
+		
+			if(str[i-1] == sub[j-1])
+				curr[j] = curr[j-1] + curr[j];
+		
+		}
+	}
+	return (int)curr[n];
+
+}
+
+
+
+int distinctSubsequences(string &str, string &sub)
+{
+	int m = str.size();
+	int n = sub.size();
+
+	// return solveRec(m-1,n-1,str,sub);
+
+	vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
+	return solveMem(m,n,str,sub,dp);
+
+	return solveTab(m,n,str,sub);
+
+	return solveSpaceOpt(m,n,str,sub);
+	
+	return solveKnapSackAlgo(m,n,str,sub);
+
+}
