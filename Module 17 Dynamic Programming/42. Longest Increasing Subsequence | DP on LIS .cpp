@@ -90,6 +90,22 @@ int solveSpaceOpt2(int arr[], int n){
     return dp[-1+1];
 }
 
+int solveTraceBack(int arr[], int n){
+
+    vector<int>dp(n,1);
+
+    int maxi = 0;
+    for(int ind=0; ind<n; ind++){
+        for(int pre=0; pre<ind; pre++){
+            if(arr[ind] > arr[pre] && dp[ind] < 1+dp[pre]){
+                dp[ind] = 1 + dp[pre];
+            }
+        }
+        maxi = max(maxi,dp[ind]);
+    }
+    return maxi;
+}
+
 
 int longestIncreasingSubsequence(int arr[], int n)
 {
@@ -105,4 +121,6 @@ int longestIncreasingSubsequence(int arr[], int n)
     return solveTab(arr,n); 
     return solveSpaceOpt(arr,n);
     return solveSpaceOpt2(arr,n);
+
+    return solveTraceBack(arr,n);
 }
