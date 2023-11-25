@@ -3,7 +3,7 @@
 int solveBinarySearch(int arr[], int n){
     vector<int>temp;
     temp.push_back(arr[0]);
-    int len = 0;
+    int len = 1;
     for(int ind=1; ind<n; ind++){
         if(arr[ind] > temp.back()){
             temp.push_back(arr[ind]);
@@ -15,6 +15,7 @@ int solveBinarySearch(int arr[], int n){
             temp[i] = arr[ind];
         }
     }
+    return len;
     return temp.size();
 }
 
