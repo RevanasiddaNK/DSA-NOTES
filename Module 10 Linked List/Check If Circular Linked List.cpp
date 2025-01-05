@@ -9,7 +9,7 @@ struct Node
     }
 
 };
-*/
+
 
 /* Should return true if linked list is circular, else false */
 class Solution {
