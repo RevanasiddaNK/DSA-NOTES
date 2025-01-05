@@ -13,63 +13,41 @@
     };
 
 *************************************************/
-Node* intersect(Node* head){
-        Node* slow = head;
-        Node* fast = head;
-        Node* ans = NULL;
-        bool s = 0;
-        while(fast != NULL && fast->next != NULL){
-            fast = fast->next->next;
-            slow = slow->next;
-            if(fast == slow){
-                s = 1;
-                break;
+
+
+
+Node* removeLoop(Node *head)
+{
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+
+    Node* s = head;
+    Node* f = head;
+    while(f != NULL && f->next != NULL){
+
+        s = s->next;
+        f = f->next->next;
+
+        if(s == f){
+            Node* ans = s;
+            s = head;
+            while(s != f){
+                s = s->next;
+                f = f->next;
             }
-        }
-        if(s == 1 ){
-            return slow;
-        }
-        else{
-            return ans;
-        }
 
+            Node* prev = s;
+            while(prev->next != s )
+                prev = prev->next;
+            prev->next = NULL;
+           
+            break;
+        }
+           
     }
 
-    Node* cycleNode(Node* head){
-        Node* fast = intersect(head);
-        if(fast == NULL)
-            return fast;
-        Node* slow = head;
-        Node* prev = fast;
-        while(slow != fast){
-            fast = fast->next;
-            slow = slow->next;
-        }
-        return slow;
-    }
-
-    Node *detectCycle(Node *head) {
-
-        if(head == NULL || head->next == NULL)
-            return NULL;
-        
-        return cycleNode(head);
-    }
-    
-Node *removeLoop(Node *head)
-{   
-    if(head == NULL || head->next == NULL)
-        return head;
-    
-   Node* ans = detectCycle(head);
-   if(ans == NULL)
-        return head;
     
 
-    Node* prev = ans;
-    while( prev->next != ans ){
-        prev = prev->next;
-    }
-    prev->next = NULL;
     return head;
 }
